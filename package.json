@@ -1,0 +1,14 @@
+{
+  "name": "portifolio-automacao-cypress",
+  "version": "1.0.0",
+  "private": true,
+  "description": "E2E demo with Cypress for Sauce Demo Shopify storefront",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:smoke": "cypress run --spec cypress/e2e/storefront-smoke.cy.js"
+  },
+  "devDependencies": {
+    "cypress": "^14.5.4"
+  }
+}
