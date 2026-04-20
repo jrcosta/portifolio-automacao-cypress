@@ -1,0 +1,60 @@
+name: CI / Testes Cypress e Relatório Allure (GitHub Pages)
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+jobs:
+  test-and-report:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # Permissão necessária para publicar na branch gh-pages
+      pages: write    # Permissões do Github Pages
+      id-token: write
+
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Instalar Cypress e Allure (como fallback)
+        run: npm install
+
+      - name: Executar testes Cypress
+        run: npm run cy:run -- --env allure=true
+        continue-on-error: true # Continua mesmo se os testes falharem para gerar o relatório
+
+      - name: Obter histórico do Allure (se existir)
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Gerar Allure Report
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+          keep_reports: 20
+
+      - name: Deploy para GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history

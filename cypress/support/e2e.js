@@ -1,5 +1,5 @@
+import "allure-cypress";
 import './commands';
-
 Cypress.on('uncaught:exception', (err) => {
   const ignoredErrors = [
     'ResizeObserver loop limit exceeded',
