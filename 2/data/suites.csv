@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","2637","navigates to a product page and validates buy form","Sauce Demo Shopify - Product navigation","Mon Apr 20 05:17:29 UTC 2026","passed","Mon Apr 20 05:17:31 UTC 2026","","","",""
+"","185","returns product data from storefront JSON endpoint","Sauce Demo Shopify - Products API","Mon Apr 20 05:17:34 UTC 2026","passed","Mon Apr 20 05:17:34 UTC 2026","","","",""
+"","864","loads homepage and shows core storefront elements","Sauce Demo Shopify - Smoke","Mon Apr 20 05:17:37 UTC 2026","passed","Mon Apr 20 05:17:37 UTC 2026","","","",""
