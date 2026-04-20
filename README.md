@@ -62,3 +62,7 @@ cypress/
 cypress.config.js
 package.json
 ```
+
+## 📊 Relatórios Allure (CI/CD)
+
+Este projeto utiliza o pacote oficial `allure-cypress` para coleta robusta de histórico de execução. Através das **GitHub Actions** (`ci-allure-pages.yml`), toda vez que há atualização na `main`, os testes rodam em background e geram um dashboard analítico publicado automaticamente no **GitHub Pages**.
