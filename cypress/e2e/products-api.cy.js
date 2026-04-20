@@ -1,10 +1,11 @@
+import ProductService from '../support/services/ProductService';
+
 describe('Sauce Demo Shopify - Products API', () => {
   it('returns product data from storefront JSON endpoint', () => {
-    cy.request('/products.json?limit=3').then((response) => {
-      expect(response.status).to.eq(200);
-      expect(response.body).to.have.property('products');
-      expect(response.body.products.length).to.be.greaterThan(0);
-      expect(response.body.products[0]).to.have.property('title');
+    // Isolamento da camada de Request (Service)
+    ProductService.getProductsJson(3).then((response) => {
+      // Isolamento da camada de Asserts (Schema Validation)
+      ProductService.validateProductsSchema(response);
     });
   });
 });
