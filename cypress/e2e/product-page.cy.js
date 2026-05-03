@@ -1,16 +1,16 @@
+import HomePage from '../support/pages/HomePage';
+import ProductPage from '../support/pages/ProductPage';
+
 describe('Sauce Demo Shopify - Product navigation', () => {
   it('navigates to a product page and validates buy form', () => {
-    cy.visit('/');
+    // 1. Visita a Home
+    HomePage.visit();
 
-    cy.getFirstProductLink()
-      .should('have.attr', 'href')
-      .then((href) => {
-        cy.visit(href);
-      });
+    // 2. Transição de Página (Clica e vai para o produto)
+    HomePage.clickFirstAvailableProduct();
 
-    cy.location('pathname').should('include', '/products/');
-    cy.get('form[action*="/cart/add"]').should('exist');
-    cy.get('form[action*="/cart/add"] button[type="submit"], form[action*="/cart/add"] input[type="submit"]')
-      .should('have.length.greaterThan', 0);
+    // 3. Valida a nova tela ativa usando PO respectivo
+    ProductPage.validateUrl()
+               .validateBuyFormExist();
   });
 });
