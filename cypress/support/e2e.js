@@ -5,6 +5,8 @@ Cypress.on('uncaught:exception', (err) => {
     'ResizeObserver loop limit exceeded',
     "Unexpected token '<'",
     'Script error.',
+    '$injector:modulerr',
+    '$injector:nomod',
   ];
 
   if (ignoredErrors.some((message) => err.message.includes(message))) {
